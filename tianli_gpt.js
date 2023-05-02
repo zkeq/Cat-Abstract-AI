@@ -40,7 +40,7 @@ function insertAIDiv(selector) {
   const aiTagDiv = document.createElement('div');
   aiTagDiv.className = 'tianliGPT-tag';
   aiTagDiv.id = 'tianliGPT-tag';
-  aiTagDiv.textContent = 'TianliGPT';
+  aiTagDiv.textContent = 'CatGPT - TianliGPT(1)';
   aiTitleDiv.appendChild(aiTagDiv);
 
   const aiExplanationDiv = document.createElement('div');
@@ -116,8 +116,9 @@ var tianliGPT = {
           }
 
         this.Steam = JSON.parse(event.data).message.content.parts[0]
-        document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam
-        // 在此处将接收到的数据分段渲染到浏览器中
+        if (this.Steam){
+          document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam
+        }
       });
   
       eventSource.addEventListener('error', function(event) {
