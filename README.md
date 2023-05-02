@@ -2,7 +2,9 @@
 
 > Make `tianliGPT_postSelector` & `tianliGPT_postURL` configurable && Running on .
 
-```
+```js
+// tianliGPT (1), But no need `tianliGPT_key`
+
 https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@e2f6530/tianli_gpt.css
 https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@e2f6530/tianli_gpt.js
 
