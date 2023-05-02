@@ -5,6 +5,8 @@
 ```js
 // tianliGPT (1), But no need `tianliGPT_key`
 
+// 使用方法同下面的文档 唯一不同的就是两个引用链接换成下面两个:
+
 https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@e2f6530/tianli_gpt.css
 https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@e2f6530/tianli_gpt.js
 
