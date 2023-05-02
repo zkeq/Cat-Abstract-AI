@@ -100,32 +100,31 @@ var tianliGPT = {
   },
   
   fetchTianliGPT: async function(content) {
-    if (!tianliGPT_key) {
-      return "没有获取到key，代码可能没有安装正确。如果你需要在tianli_gpt文件引用前定义tianliGPT_key变量。详细请查看文档。";
-    }
 
-    if (tianliGPT_key === "5Q5mpqRK5DkwT1X9Gi5e") {
-      return "请购买 key 使用，如果你能看到此条内容，则说明代码安装正确。";
-    }
+    content = "生成50-100字摘要供读者阅读,不要带“生成的摘要如下”这样的问候信息,我给你的文章内容是:" + content
 
-    const apiUrl = `https://summary.tianli0.top/?content=${encodeURIComponent(content)}&key=${encodeURIComponent(tianliGPT_key)}`;
-    const timeout = 20000; // 设置超时时间（毫秒）
+    const apiUrl = `https://hub.onmicrosoft.cn/chat/stream?q=${encodeURIComponent(content)}`;
+    // const timeout = 20000; // 设置超时时间（毫秒）
   
     try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
-        const response = await fetch(apiUrl, { signal: controller.signal });
-        if (response.ok) {
-            const data = await response.json();
-            return data.summary;
-        } else {
-            if (response.status === 402) {
-                document.querySelectorAll('.post-TianliGPT').forEach(el => {
-                    el.style.display = 'none';
-                });
-            }
-            throw new Error('TianliGPT：余额不足，请充值后请求新的文章');
-        }
+        const eventSource = new EventSource(apiUrl);
+
+        eventSource.addEventListener('message',  (event) => {
+          if ("[DONE]" == event.data) {
+              eventSource.close();
+              return;
+          }
+
+        this.Steam = JSON.parse(event.data).message.content.parts[0]
+        document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam
+        // 在此处将接收到的数据分段渲染到浏览器中
+      });
+  
+      eventSource.addEventListener('error', function(event) {
+          // 停止接收数据
+          eventSource.close();
+      });
+
     } catch (error) {
         if (error.name === 'AbortError') {
             if (window.location.hostname === 'localhost') {

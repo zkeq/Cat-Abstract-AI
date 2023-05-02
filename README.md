@@ -1,5 +1,15 @@
 ### Clone from Post-Abstract-AI
 
+> Make `tianliGPT_postSelector` & `tianliGPT_postURL` configurable && Running on .
+
+```
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@master/tianli_gpt.css
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@master/tianli_gpt.js
+
+let tianliGPT_postSelector = '#post #article-container';
+let tianliGPT_postURL = undefined;
+```
+
 ---
 
 # Post-Abstract-AI
