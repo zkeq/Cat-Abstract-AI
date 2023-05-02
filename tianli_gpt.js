@@ -148,6 +148,8 @@ function runTianliGPT() {
   const content = tianliGPT.getTitleAndContent();
   if (!content && content !== '') {
     console.log('TianliGPT本次提交的内容为：' + content);
+  }else{
+    return;
   }
   tianliGPT.fetchTianliGPT(content);
 }
