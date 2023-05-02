@@ -116,9 +116,7 @@ var tianliGPT = {
           }
 
         this.Steam = JSON.parse(event.data).message.content.parts[0]
-        if (this.Steam){
-          document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam
-        }
+        document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam
       });
   
       eventSource.addEventListener('error', function(event) {
@@ -151,10 +149,7 @@ function runTianliGPT() {
   if (!content && content !== '') {
     console.log('TianliGPT本次提交的内容为：' + content);
   }
-  tianliGPT.fetchTianliGPT(content).then(summary => {
-    const aiExplanationDiv = document.querySelector('.tianliGPT-explanation');
-    aiExplanationDiv.innerHTML = summary;
-  })
+  tianliGPT.fetchTianliGPT(content);
 }
 
 function checkURLAndRun() {
