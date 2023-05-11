@@ -101,7 +101,7 @@ var tianliGPT = {
   
   fetchTianliGPT: async function(content) {
 
-    content = "生成50-100字摘要供读者阅读,不要带“生成的摘要如下”这样的问候信息,我给你的文章内容是:" + content
+    content = "生成30字以内的摘要供读者阅读,不要带“生成的摘要如下”这样的问候信息,我给你的文章内容是:" + content
 
     const apiUrl = `https://hub.onmicrosoft.cn/chat/stream?q=${encodeURIComponent(content)}`;
     // const timeout = 20000; // 设置超时时间（毫秒）
