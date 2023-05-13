@@ -93,15 +93,19 @@ var tianliGPT = {
       for (let p of paragraphs) {
         // 移除包含'http'的链接
         const filteredText = p.innerText.replace(/https?:\/\/[^\s]+/g, '');
-        content += filteredText;
+        content += filteredText + "\n";
       }
   
       const combinedText = title + ' ' + content;
-      let wordLimit = 480;
+      let wordLimit = 720;
       if (typeof tianliGPT_wordLimit !== "undefined") {
         wordLimit = tianliGPT_wordLimit;
       }
-      const truncatedText = combinedText.slice(0, wordLimit);
+      // 截取前 wordLimit 个字符 用 \n 分割, 去掉最后一个 防止出现截断单词的情况 或者截断 . 或者 句号 的内容 返回比较长的那个
+      const truncatedText_01 = combinedText.substring(0, wordLimit).split('\n').slice(0, -1).join('\n');
+      const truncatedText_02 = combinedText.substring(0, wordLimit).split('.').slice(0, -1).join('.');
+      const truncatedText_03 = combinedText.substring(0, wordLimit).split('。').slice(0, -1).join('。');
+      const truncatedText = [truncatedText_01, truncatedText_02, truncatedText_03].sort((a, b) => b.length - a.length)[0];
       return truncatedText;
     } catch (e) {
       console.error('TianliGPT错误：可能由于一个或多个错误导致没有正常运行，原因出在获取文章容器中的内容失败，或者可能是在文章转换过程中失败。', e);
