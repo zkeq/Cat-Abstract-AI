@@ -1,5 +1,8 @@
 console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c https://github.com/zhheo/Post-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;")
 
+// 1. 读取文章已有的描述
+// 2. 增加按钮 AI 描述
+
 function insertAIDiv(selector) {
   // 首先移除现有的 "post-TianliGPT" 类元素（如果有的话）
   removeExistingAIDiv();
@@ -36,6 +39,13 @@ function insertAIDiv(selector) {
   aiTitleTextDiv.className = 'tianliGPT-title-text';
   aiTitleTextDiv.textContent = 'AI摘要';
   aiTitleDiv.appendChild(aiTitleTextDiv);
+
+  const aiToggleDiv = document.createElement('div');
+  aiToggleDiv.id = 'tianliGPT-Toggle';
+  aiToggleDiv.textContent = '切换';
+  // 点击时触发 runTianliGPT 函数
+  aiToggleDiv.addEventListener('click', runTianliGPT);
+  aiTitleDiv.appendChild(aiToggleDiv);
 
   const aiTagDiv = document.createElement('div');
   aiTagDiv.className = 'tianliGPT-tag';
@@ -144,7 +154,6 @@ var tianliGPT = {
 }
 
 function runTianliGPT() {
-  insertAIDiv(tianliGPT_postSelector);
   const content = tianliGPT.getTitleAndContent();
   if (content && content !== '') {
     console.log('TianliGPT本次提交的内容为：' + content);
@@ -156,7 +165,7 @@ function runTianliGPT() {
 
 function checkURLAndRun() {
   if (typeof tianliGPT_postURL === "undefined") {
-    runTianliGPT(); // 如果没有设置自定义 URL，则直接执行 runTianliGPT() 函数
+    initRun(); // 如果没有设置自定义 URL，则直接执行 runTianliGPT() 函数
     return;
   }
 
@@ -173,13 +182,25 @@ function checkURLAndRun() {
     const currentURL = window.location.href;
 
     if (urlPattern.test(currentURL)) {
-      runTianliGPT(); // 如果当前 URL 符合用户设置的 URL，则执行 runTianliGPT() 函数
+      initRun(); // 如果当前 URL 符合用户设置的 URL，则执行 runTianliGPT() 函数
     } else {
       console.log("TianliGPT：因为不符合自定义的链接规则，我决定不执行摘要功能。");
     }
   } catch (error) {
     console.error("TianliGPT：我没有看懂你编写的自定义链接规则，所以我决定不执行摘要功能", error);
   }
+}
+
+function fillDescriptionContent() {
+  const descriptionElement = document.querySelector('meta[name="description"]');
+  if (descriptionElement) {
+    document.querySelector('.tianliGPT-explanation').innerHTML = descriptionElement.content;
+  }
+}
+
+function initRun() {
+  insertAIDiv(tianliGPT_postSelector);
+  fillDescriptionContent();
 }
 
 checkURLAndRun();

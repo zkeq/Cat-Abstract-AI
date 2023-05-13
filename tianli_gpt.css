@@ -248,6 +248,24 @@
   }
 }
 
+#tianliGPT-Toggle {
+  font-size: 12px;
+  background: var(--heo-lighttext);
+  color: var(--heo-card-bg);
+  padding: 4px;
+  border-radius: 4px;
+  margin-left: 6px;
+  transform: scale(0.8);
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+#tianliGPT-Toggle:hover {
+  background: var(--heo-fontcolor);
+  color: var(--heo-card-bg);
+}
+
 .tianliGPT-tag {
   font-size: 12px;
   background-color: var(--heo-lighttext);

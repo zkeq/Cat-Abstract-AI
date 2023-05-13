@@ -14,6 +14,8 @@ let tianliGPT_postSelector = '#post #article-container';
 let tianliGPT_postURL = undefined;
 ```
 
+- 2023.05.14: 支持默认从文章描述拉取, 手动获取摘要 减少配额消耗
+
 ---
 
 # Post-Abstract-AI
