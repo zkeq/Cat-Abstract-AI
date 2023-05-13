@@ -7,14 +7,14 @@
 
 // 使用方法同下面的文档 唯一不同的就是两个引用链接换成下面两个:
 
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@9b75d92/tianli_gpt.css
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@9b75d92/tianli_gpt.js
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8d132b/tianli_gpt.css
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8d132b/tianli_gpt.js
 
 let tianliGPT_postSelector = '#post #article-container';
 let tianliGPT_postURL = undefined;
 ```
 
-- 2023.05.14: 支持默认从文章描述拉取, 手动获取摘要 减少配额消耗
+- 2023.05.14: 支持默认从文章描述拉取, 手动获取摘要 减少配额消耗 (需要配合主题pjax使用)
 
 ---
 
