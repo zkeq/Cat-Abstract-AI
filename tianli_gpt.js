@@ -196,7 +196,7 @@ function checkURLAndRun() {
 }
 
 function fillDescriptionContent() {
-  const descriptionElement = document.querySelector('meta[name="description"]');
+  let descriptionElement = document.querySelector('meta[name="description"]');
   if (descriptionElement) {
     document.querySelector('.tianliGPT-explanation').innerHTML = descriptionElement.content;
   }
