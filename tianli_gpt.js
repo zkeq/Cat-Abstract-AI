@@ -116,17 +116,21 @@ var tianliGPT = {
     const apiUrl = `https://hub.onmicrosoft.cn/chat/stream?q=${encodeURIComponent(content)}`;
     // const timeout = 20000; // 设置超时时间（毫秒）
   
+    document.querySelector('.tianliGPT-explanation').innerHTML = '生成中...' + '<span class="blinking-cursor"></span>';
+
     try {
         const eventSource = new EventSource(apiUrl);
 
         eventSource.addEventListener('message',  (event) => {
           if ("[DONE]" == event.data) {
+              // 去除光标
+              document.querySelector('.blinking-cursor').remove();
               eventSource.close();
               return;
           }
 
         this.Steam = JSON.parse(event.data).message.content.parts[0]
-        document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam
+        document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam + '<span class="blinking-cursor"></span>';
       });
   
       eventSource.addEventListener('error', function(event) {
