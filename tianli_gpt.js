@@ -87,13 +87,13 @@ var tianliGPT = {
       let content = '';
   
       for (let h of headings) {
-        content += h.innerText + ' ';
+        content += h.innerText + '|&|';
       }
   
       for (let p of paragraphs) {
         // 移除包含'http'的链接
         const filteredText = p.innerText.replace(/https?:\/\/[^\s]+/g, '');
-        content += filteredText + ' ';
+        content += filteredText + '|&|';
       }
   
       const combinedText = title + ' ' + content;
@@ -101,8 +101,7 @@ var tianliGPT = {
       if (typeof tianliGPT_wordLimit !== "undefined") {
         wordLimit = tianliGPT_wordLimit;
       }
-      // 截取到指定的字数的最后一块
-      const truncatedText = combinedText.substring(0, wordLimit).split(' ').slice(0, -1).join(' ');
+      const truncatedText = combinedText.substring(0, wordLimit).split('|&|').slice(0, -1).join(' ');
       return truncatedText;
     } catch (e) {
       console.error('TianliGPT错误：可能由于一个或多个错误导致没有正常运行，原因出在获取文章容器中的内容失败，或者可能是在文章转换过程中失败。', e);
