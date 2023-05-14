@@ -7,8 +7,13 @@
 
 // 使用方法同下面的文档 唯一不同的就是两个引用链接换成下面两个:
 
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8d132b/tianli_gpt.css
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8d132b/tianli_gpt.js
+一下把请求到的数据全渲染的版本 (原速,但是看不出AI效果):
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@b4bc1cd/tianli_gpt.css
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@b4bc1cd/tianli_gpt.js
+
+渐渐出来的版本 (我在用的):
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@9d53d80/tianli_gpt.css
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@9d53d80/tianli_gpt.js
 
 let tianliGPT_postSelector = '#post #article-container';
 let tianliGPT_postURL = undefined;
