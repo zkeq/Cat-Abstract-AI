@@ -3,9 +3,14 @@ console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c ht
 // 1. 读取文章已有的描述
 // 2. 增加按钮 AI 描述
 
+var StreamCatGPTFetchList = [];
+var StreamCatGPTFetchIndex = 0;
+
 function insertAIDiv(selector) {
   // 首先移除现有的 "post-TianliGPT" 类元素（如果有的话）
   removeExistingAIDiv();
+  StreamCatGPTFetchList = [];
+  StreamCatGPTFetchIndex = 0;
   
   // 获取目标元素
   const targetElement = document.querySelector(selector);
@@ -72,6 +77,24 @@ function removeExistingAIDiv() {
   }
 }
 
+function runStreamAnswer(){
+  StreamCatGPTFetchIndex++;
+  // 如果 StreamCatGPTFetchList 有元素 移除第一个 渲染
+  let praseItem;
+  if (StreamCatGPTFetchList.length > 0){
+    praseItem = StreamCatGPTFetchList.shift();
+  }
+  // 如果是 [DONE] 就停止
+  if (praseItem == "[DONE]") {
+    document.querySelector('.blinking-cursor').remove();
+    return;
+  }
+  if (praseItem) {
+    document.querySelector('.tianliGPT-explanation').innerHTML = praseItem + '<span class="blinking-cursor"></span>';
+  }
+  setTimeout(runStreamAnswer, 64);
+}
+
 var tianliGPT = {
   //读取文章中的所有文本
   getTitleAndContent: function() {
@@ -123,14 +146,19 @@ var tianliGPT = {
 
         eventSource.addEventListener('message',  (event) => {
           if ("[DONE]" == event.data) {
-              // 去除光标
-              document.querySelector('.blinking-cursor').remove();
+            StreamCatGPTFetchList.push("[DONE]");
               eventSource.close();
               return;
           }
 
         this.Steam = JSON.parse(event.data).message.content.parts[0]
-        document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam + '<span class="blinking-cursor"></span>';
+        StreamCatGPTFetchList.push(this.Steam)
+        // if fetchIndex == 0
+        if (StreamCatGPTFetchList.length == 1 && StreamCatGPTFetchIndex == 0) {
+          runStreamAnswer();
+        }
+
+        // document.querySelector('.tianliGPT-explanation').innerHTML = this.Steam + '<span class="blinking-cursor"></span>';
       });
   
       eventSource.addEventListener('error', function(event) {
@@ -142,14 +170,14 @@ var tianliGPT = {
         if (error.name === 'AbortError') {
             if (window.location.hostname === 'localhost') {
                 console.warn('警告：请勿在本地主机上测试 API 密钥。');
-                return '获取文章摘要超时。请勿在本地主机上测试 API 密钥。';
+                document.querySelector('.tianliGPT-explanation').innerHTML = '获取文章摘要超时。请勿在本地主机上测试 API 密钥。';
             } else {
                 console.error('请求超时');
-                return '获取文章摘要超时。当你出现这个问题时，可能是key或者绑定的域名不正确。也可能是因为文章过长导致的 AI 运算量过大，您可以稍等一下然后刷新页面重试。';
+                document.querySelector('.tianliGPT-explanation').innerHTML = '获取文章摘要超时。当你出现这个问题时，可能是key或者绑定的域名不正确。也可能是因为文章过长导致的 AI 运算量过大，您可以稍等一下然后刷新页面重试。';
             }
         } else {
             console.error('请求失败：', error);
-            return '获取文章摘要失败，请稍后再试。';
+            document.querySelector('.tianliGPT-explanation').innerHTML = '获取文章摘要失败，请稍后再试。';
         }
     }
 }
