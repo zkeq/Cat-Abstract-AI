@@ -90,7 +90,12 @@ function runStreamAnswer(){
   if (praseItem) {
     document.querySelector('.tianliGPT-explanation').innerHTML = praseItem + '<span class="blinking-cursor"></span>';
   }
-  setTimeout(runStreamAnswer, 64);
+
+  if (/[,.，。!?！？]/.test(praseItem.slice(-1))) {
+    setTimeout(runStreamAnswer, 120);
+  } else {
+    setTimeout(runStreamAnswer, 64);
+  }
 }
 
 var tianliGPT = {
