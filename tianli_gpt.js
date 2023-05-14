@@ -1,4 +1,4 @@
-console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c https://github.com/zhheo/Post-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;")
+console.log("\n %c Cat-Abstract-AI (Forked from Post-Abstract-AI) 开源博客文章摘要AI生成工具 %c https://github.com/zkeq/Cat-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;")
 
 // 1. 读取文章已有的描述
 // 2. 增加按钮 AI 描述
@@ -6,7 +6,7 @@ console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c ht
 var StreamCatGPTFetchList = [];
 var StreamCatGPTFetchIndex = 0;
 
-function insertAIDiv(selector) {
+function initRun(selector) {
   // 首先移除现有的 "post-TianliGPT" 类元素（如果有的话）
   removeExistingAIDiv();
   
@@ -61,7 +61,14 @@ function insertAIDiv(selector) {
 
   const aiExplanationDiv = document.createElement('div');
   aiExplanationDiv.className = 'tianliGPT-explanation';
-  aiExplanationDiv.innerHTML = '生成中...' + '<span class="blinking-cursor"></span>';
+  // Init Content ...
+  let descriptionElement = document.querySelector('meta[name="description"]');
+  if (descriptionElement) {
+    aiExplanationDiv.innerHTML = descriptionElement.content;
+  } else{
+    aiExplanationDiv.innerHTML = '暂无预设简介，请点击上方切换 AI实时简介。' + '<span class="blinking-cursor"></span>';
+  }
+  aiExplanationDiv.innerHTML = descriptionElement.content;
   aiDiv.appendChild(aiExplanationDiv); // 将 tianliGPT-explanation 插入到 aiDiv，而不是 aiTitleDiv
 
   // 将创建的元素插入到目标元素的顶部
@@ -205,7 +212,7 @@ function runTianliGPT() {
 
 function checkURLAndRun() {
   if (typeof tianliGPT_postURL === "undefined") {
-    initRun(); // 如果没有设置自定义 URL，则直接执行 runTianliGPT() 函数
+    initRun(tianliGPT_postSelector); // 如果没有设置自定义 URL，则直接执行 runTianliGPT() 函数
     return;
   }
 
@@ -222,25 +229,13 @@ function checkURLAndRun() {
     const currentURL = window.location.href;
 
     if (urlPattern.test(currentURL)) {
-      initRun(); // 如果当前 URL 符合用户设置的 URL，则执行 runTianliGPT() 函数
+      initRun(tianliGPT_postSelector); // 如果当前 URL 符合用户设置的 URL，则执行 runTianliGPT() 函数
     } else {
       console.log("TianliGPT：因为不符合自定义的链接规则，我决定不执行摘要功能。");
     }
   } catch (error) {
     console.error("TianliGPT：我没有看懂你编写的自定义链接规则，所以我决定不执行摘要功能", error);
   }
-}
-
-function fillDescriptionContent() {
-  let descriptionElement = document.querySelector('meta[name="description"]');
-  if (descriptionElement) {
-    document.querySelector('.tianliGPT-explanation').innerHTML = descriptionElement.content;
-  }
-}
-
-function initRun() {
-  insertAIDiv(tianliGPT_postSelector);
-  fillDescriptionContent();
 }
 
 checkURLAndRun();
