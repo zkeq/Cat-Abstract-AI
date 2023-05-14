@@ -51,6 +51,9 @@ function insertAIDiv(selector) {
   aiTagDiv.className = 'tianliGPT-tag';
   aiTagDiv.id = 'tianliGPT-tag';
   aiTagDiv.textContent = 'CatGPT - TianliGPT(1)';
+  aiTagDiv.addEventListener('click', () => {
+    window.open('https://catgpt.miaorun.dev/', '_blank');
+  });
   aiTitleDiv.appendChild(aiTagDiv);
 
   const aiExplanationDiv = document.createElement('div');
