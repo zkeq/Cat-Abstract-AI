@@ -22,7 +22,6 @@ let tianliGPT_postURL = undefined;
 - 2023.05.14: 支持默认从文章描述拉取, 手动获取摘要 减少配额消耗 (需要配合主题pjax使用)
 
 ---
-
 # Post-Abstract-AI
 
 <p align="center">
@@ -86,14 +85,15 @@ inject:
 | 主题名称             | tianliGPT_postSelector         | tianliGPT_postURL | 备注 |
 | -------------------- | ------------------------ | --- | --- |
 | hexo-theme-butterfly | #post #article-container | 无需添加 | 无 |
-| hexo-theme-next      | #posts .post-body        | 无需添加 | 无 |
 | hexo-theme-fluid | #board .post-content | 无需添加 | 无 |
+| hexo-theme-next      | #posts .post-body        | 无需添加 | 无 |
 | hexo-theme-stellar | .md-text.content.post | 无需添加 | 无 |
 | hexo-theme-volantis | #post #post-body | 无需添加 | 无 |
-| wordpress: Sakurairo | .post .entry-content | 无需添加 | 无 |
 | wordpress: 7B2 | #primary-home .entry-content | 修改里面的域名：`b2.7b2.com/34000.html` | 无 |
-| valaxy-theme-yun | .content .markdown-body | `*/posts/*` | 无 |
+| wordpress：pix | .single-content | `https://*/*.html` | 无 |
+| wordpress: Sakurairo | .post .entry-content | 无需添加 | 无 |
 | Siuyo/Ying | .post-content | `https://*/*.html` | 需使用[定制JS](/custom/README.md) |
+| valaxy-theme-yun | .content .markdown-body | `*/posts/*` | 无 |
 
 如果你没有在上面看到你的主题，可以到issues中提交你的主题名称，我会进行适配。
 
