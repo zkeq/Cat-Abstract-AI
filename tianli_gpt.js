@@ -9,8 +9,6 @@ var StreamCatGPTFetchIndex = 0;
 function insertAIDiv(selector) {
   // 首先移除现有的 "post-TianliGPT" 类元素（如果有的话）
   removeExistingAIDiv();
-  StreamCatGPTFetchList = [];
-  StreamCatGPTFetchIndex = 0;
   
   // 获取目标元素
   const targetElement = document.querySelector(selector);
@@ -186,6 +184,8 @@ var tianliGPT = {
 }
 
 function runTianliGPT() {
+  StreamCatGPTFetchList = [];
+  StreamCatGPTFetchIndex = 0;
   const content = tianliGPT.getTitleAndContent();
   if (content && content !== '') {
     console.log('TianliGPT本次提交的内容为：' + content);
