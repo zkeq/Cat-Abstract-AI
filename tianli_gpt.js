@@ -1,4 +1,4 @@
-console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c https://github.com/zhheo/Post-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;")
+console.log("\n %c Cat-Abstract-AI (Forked from Post-Abstract-AI) 开源博客文章摘要AI生成工具 %c https://github.com/zkeq/Cat-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;")
 
 // 1. 读取文章已有的描述
 // 2. 增加按钮 AI 描述
