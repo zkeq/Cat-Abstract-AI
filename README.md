@@ -8,8 +8,8 @@
 // 使用方法同下面的文档 唯一不同的就是两个引用链接换成下面两个:
 
 一下把请求到的数据全渲染的版本 (原速,但是看不出AI效果):
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8642e3a/tianli_gpt.css
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8642e3a/tianli_gpt.js
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@5f6351f/tianli_gpt.css
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@5f6351f/tianli_gpt.js
 
 渐渐出来的版本 (我在用的):
 https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@c8ad227/tianli_gpt.css
