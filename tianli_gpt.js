@@ -3,6 +3,8 @@ console.log("\n %c Cat-Abstract-AI (Forked from Post-Abstract-AI) 开源博客�
 // 1. 读取文章已有的描述
 // 2. 增加按钮 AI 描述
 
+let StreamCatGPTFetchWait = false;
+
 function insertAIDiv(selector) {
   // 首先移除现有的 "post-TianliGPT" 类元素（如果有的话）
   removeExistingAIDiv();
@@ -123,12 +125,14 @@ var tianliGPT = {
 
     try {
         const eventSource = new EventSource(apiUrl);
+        StreamCatGPTFetchWait = true;
 
         eventSource.addEventListener('message',  (event) => {
           if ("[DONE]" == event.data) {
               // 去除光标
               document.querySelector('.blinking-cursor').remove();
               eventSource.close();
+              StreamCatGPTFetchWait = false;
               return;
           }
 
@@ -161,6 +165,10 @@ var tianliGPT = {
 }
 
 function runTianliGPT() {
+  if (StreamCatGPTFetchWait){
+    console.log('TianliGPT：正在等待上一次请求的返回结果，本次请求将被忽略。');
+    return;
+  }
   const content = tianliGPT.getTitleAndContent();
   if (content && content !== '') {
     console.log('TianliGPT本次提交的内容为：' + content);

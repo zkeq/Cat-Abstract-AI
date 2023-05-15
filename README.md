@@ -12,8 +12,8 @@ https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8642e3a/tianli_gpt.css
 https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@8642e3a/tianli_gpt.js
 
 渐渐出来的版本 (我在用的):
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@9c5e692/tianli_gpt.css
-https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@9c5e692/tianli_gpt.js
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@c8ad227/tianli_gpt.css
+https://jsd.onmicrosoft.cn/gh/zkeq/Cat-Abstract-AI@c8ad227/tianli_gpt.js
 
 let tianliGPT_postSelector = '#post #article-container';
 let tianliGPT_postURL = undefined;
