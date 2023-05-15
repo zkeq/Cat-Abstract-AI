@@ -5,6 +5,7 @@ console.log("\n %c Cat-Abstract-AI (Forked from Post-Abstract-AI) 开源博客�
 
 var StreamCatGPTFetchList = [];
 var StreamCatGPTFetchIndex = 0;
+var StreamCatGPTFetchWait = false;
 
 function initRun(selector) {
   // 首先移除现有的 "post-TianliGPT" 类元素（如果有的话）
@@ -95,6 +96,7 @@ function runStreamAnswer(){
   // 如果是 [DONE] 就停止
   if (praseItem == "[DONE]") {
     document.querySelector('.blinking-cursor').remove();
+    StreamCatGPTFetchWait = false;
     return;
   }
   if (praseItem) {
@@ -156,6 +158,7 @@ var tianliGPT = {
 
     try {
         const eventSource = new EventSource(apiUrl);
+        StreamCatGPTFetchWait = true;
 
         eventSource.addEventListener('message',  (event) => {
           if ("[DONE]" == event.data) {
@@ -199,6 +202,9 @@ var tianliGPT = {
 }
 
 function runTianliGPT() {
+  if (StreamCatGPTFetchWait) {
+    return;
+  }
   StreamCatGPTFetchList = [];
   StreamCatGPTFetchIndex = 0;
   const content = tianliGPT.getTitleAndContent();
