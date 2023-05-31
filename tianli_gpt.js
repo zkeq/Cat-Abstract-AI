@@ -100,7 +100,7 @@ function runStreamAnswer(){
     return;
   }
   if (praseItem) {
-    document.querySelector('.tianliGPT-explanation').innerHTML = praseItem + '<span class="blinking-cursor"></span>';
+    document.querySelector('.tianliGPT-explanation').innerHTML += praseItem + '<span class="blinking-cursor"></span>';
   }
 
   if (/[,.，。!?！？]/.test(praseItem.slice(-1))) {
@@ -161,14 +161,15 @@ var tianliGPT = {
         StreamCatGPTFetchWait = true;
 
         eventSource.addEventListener('message',  (event) => {
-          if ("[DONE]" == event.data) {
-            StreamCatGPTFetchList.push("[DONE]");
+
+          _data = decodeURIComponent(event.data)
+          if ("[DONE]" == _data) {
+              StreamCatGPTFetchList.push("[DONE]");
               eventSource.close();
               return;
           }
 
-        this.Steam = JSON.parse(event.data).message.content.parts[0]
-        StreamCatGPTFetchList.push(this.Steam)
+        StreamCatGPTFetchList.push(_data)
         // if fetchIndex == 0
         if (StreamCatGPTFetchList.length == 1 && StreamCatGPTFetchIndex == 0) {
           runStreamAnswer();
