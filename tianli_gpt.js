@@ -100,7 +100,7 @@ function runStreamAnswer(){
     return;
   }
   if (praseItem) {
-    document.querySelector('.tianliGPT-explanation').innerHTML += praseItem + '<span class="blinking-cursor"></span>';
+    document.querySelector('.tianliGPT-explanation').innerHTML = praseItem + '<span class="blinking-cursor"></span>';
   }
 
   if (/[,.，。!?！？]/.test(praseItem.slice(-1))) {
