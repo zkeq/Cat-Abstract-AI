@@ -106,7 +106,7 @@ function runStreamAnswer(){
   if (/[,.，。!?！？]/.test(praseItem.slice(-1))) {
     setTimeout(runStreamAnswer, 120);
   } else {
-    setTimeout(runStreamAnswer, 64);
+    setTimeout(runStreamAnswer, 48);
   }
 }
 
