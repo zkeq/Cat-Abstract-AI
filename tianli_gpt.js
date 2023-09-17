@@ -93,6 +93,11 @@ function runStreamAnswer(){
   if (StreamCatGPTFetchList.length > 0){
     praseItem = StreamCatGPTFetchList.shift();
   }
+
+  if (!praseItem) {
+    setTimeout(runStreamAnswer, 120);
+  }
+  
   // 如果是 [DONE] 就停止
   if (praseItem == "[DONE]") {
     document.querySelector('.blinking-cursor').remove();
