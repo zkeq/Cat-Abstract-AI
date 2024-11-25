@@ -167,14 +167,13 @@ var tianliGPT = {
 
         eventSource.addEventListener('message',  (event) => {
 
-          _data = decodeURIComponent(event.data)
-          if ("[DONE]" == _data) {
-              StreamCatGPTFetchList.push("[DONE]");
-              eventSource.close();
-              return;
-          }
+        if ("[DONE]" == _data) {
+            StreamCatGPTFetchList.push("[DONE]");
+            eventSource.close();
+            return;
+        }
 
-        const content = JSON.parse(_data).choices[0].delta.content;
+        const content = JSON.parse(event.data).message.content.parts[0]
         StreamCatGPTFetchList.push(content)
         // if fetchIndex == 0
         if (StreamCatGPTFetchList.length == 1 && StreamCatGPTFetchIndex == 0) {
