@@ -174,7 +174,8 @@ var tianliGPT = {
               return;
           }
 
-        StreamCatGPTFetchList.push(_data)
+        const content = JSON.parse(_data).choices[0].delta.content;
+        StreamCatGPTFetchList.push(content)
         // if fetchIndex == 0
         if (StreamCatGPTFetchList.length == 1 && StreamCatGPTFetchIndex == 0) {
           runStreamAnswer();
