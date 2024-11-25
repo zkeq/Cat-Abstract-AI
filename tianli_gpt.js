@@ -173,7 +173,7 @@ var tianliGPT = {
             return;
         }
 
-        const content = JSON.parse(event.data).message.content.parts[0]
+        const content = JSON.parse(decodeURIComponent(event.data)).message.content.parts[0]
         StreamCatGPTFetchList.push(content)
         // if fetchIndex == 0
         if (StreamCatGPTFetchList.length == 1 && StreamCatGPTFetchIndex == 0) {
